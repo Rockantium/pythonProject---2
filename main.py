@@ -3,49 +3,52 @@
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 def exact_change(user_total):
-  """Returns the number of each type of coin needed to make change for user_total.
+  """
+  This function takes an integer as input and returns the number of dollars, quarters, dimes, nickels, and pennies needed to make up that amount in change.
 
   Args:
-    user_total: The amount of change to make.
+    user_total: The total change amount in cents.
 
   Returns:
-    A tuple of the number of dollars, quarters, dimes, nickels, and pennies needed.
+    A tuple of (dollars, quarters, dimes, nickels, pennies).
   """
 
-  num_dollars = user_total // 100
-  user_total -= num_dollars * 100
-  num_quarters = user_total // 25
-  user_total -= num_quarters * 25
-  num_dimes = user_total // 10
-  user_total -= num_dimes * 10
-  num_nickels = user_total // 5
-  user_total -= num_nickels * 5
-  num_pennies = user_total
+  dollars = user_total // 100
+  user_total %= 100
+  quarters = user_total // 25
+  user_total %= 25
+  dimes = user_total // 10
+  user_total %= 10
+  nickels = user_total // 5
+  pennies = user_total % 5
 
-  return num_dollars, num_quarters, num_dimes, num_nickels, num_pennies
-
-
-def main():
-  """Prompts the user for the amount of change and prints the change using the fewest coins."""
-
-  input_val = int(input("Enter the amount of change: "))
-  num_dollars, num_quarters, num_dimes, num_nickels, num_pennies = exact_change(input_val)
-
-  print("Here is your change in the fewest coins:")
-  if num_dollars:
-    print(f"{num_dollars} dollar")
-  if num_quarters:
-    print(f"{num_quarters} quarter")
-  if num_dimes:
-    print(f"{num_dimes} dime")
-  if num_nickels:
-    print(f"{num_nickels} nickel")
-  if num_pennies:
-    print(f"{num_pennies} pennies")
+  return (dollars, quarters, dimes, nickels, pennies)
 
 
-if __name__ == "__main__":
-  main()
+if __name__ == '__main__':
+  input_val = int(input())
+  dollars, quarters, dimes, nickels, pennies = exact_change(input_val)
 
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+  if input_val <= 0:
+    print('no change')
+  else:
+    if dollars > 1:
+      print(f'{dollars} dollars')
+    elif dollars == 1:
+      print(f'{dollars} dollar')
+    if quarters > 1:
+      print(f'{quarters} quarters')
+    elif quarters == 1:
+      print(f'{quarters} quarter')
+    if dimes > 1:
+      print(f'{dimes} dimes')
+    elif dimes == 1:
+      print(f'{dimes} dime')
+    if nickels > 1:
+      print(f'{nickels} nickels')
+    elif nickels == 1:
+      print(f'{nickels} nickel')
+    if pennies > 1:
+      print(f'{pennies} pennies')
+    elif pennies == 1:
+      print(f'{pennies} penny')
